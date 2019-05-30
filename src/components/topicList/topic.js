@@ -5,7 +5,7 @@ import './topic.scss'
 class Topic extends Component {
   //跳转到详情页
   goToDetail (topic) {
-    Taro.navigateTo({url: '/pages/detail/index?topicid=' + topic.id})
+    Taro.navigateTo({url: `/pages/detail/index?topicId=${topic.id}`})
   }
 
   render () {

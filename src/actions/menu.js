@@ -1,3 +1,4 @@
+import { getTopicList } from './topicList'
 import { SHOW_DRAWER, HIDE_DRAWER, CHANGE_CATEGORY } from '../constants/menu'
 
 /**
@@ -27,5 +28,6 @@ export const hideDrawer = () => {
 export const changeCategory = (currentCategory) => {
   return dispatch => {
     dispatch({type: CHANGE_CATEGORY, payload: {currentCategory}})
+    dispatch(getTopicList({page: 1, limit: 20, tab: currentCategory.key}))
   }
 }

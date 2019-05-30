@@ -26,9 +26,11 @@ class Menu extends Component {
    * @param index 抽屉数据的索引
    */
   clickCategory (index) {
-    const {categoryData, changeCategory} = this.props
-    const currentCategory = categoryData[index]
-    changeCategory(currentCategory)
+    const {categoryData, changeCategory, currentCategory} = this.props
+    const clickedCategory = categoryData[index]
+    if (clickedCategory.key !== currentCategory.key) {
+      changeCategory(clickedCategory)
+    }
   }
 
   render () {

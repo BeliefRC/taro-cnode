@@ -8,8 +8,8 @@ import { ADMIRE_SUCCESS, GET_TOPIC_INFO, GET_TOPIC_LIST, APPEND_TOPIC_LIST } fro
  */
 export const getTopicList = (params) => {
   return async dispatch => {
-    let result = await getJSON(api.getTopics, params)
-    if (result.success === true) {
+    const result = await getJSON(api.getTopics, params)
+    if (result && result.success === true) {
       if (params.page <= 1) {
         dispatch({type: GET_TOPIC_LIST, payload: {list: result.data}})
       } else {
@@ -24,6 +24,22 @@ export const getTopicList = (params) => {
           })
         }
       }
+    }
+  }
+}
+
+/**
+ * 请求话题详情
+ * @param params
+ * @returns {Function}
+ */
+export function getTopicInfo (params) {
+  return async dispatch => {
+    const result = await getJSON(api.getTopicInfo + params.id, params)
+    if (result && result.success) {
+      dispatch({type: GET_TOPIC_INFO, payload: {infoData: result.data}})
+    } else {
+      console.error('请求话题详情失败！')
     }
   }
 }
