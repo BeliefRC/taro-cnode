@@ -15,7 +15,7 @@ export default function topicList (state = INITIAL_STATE, action) {
     case  ADMIRE_SUCCESS:
       return {...state, admireState: !state.admireState}
     case GET_TOPIC_INFO:
-      return {...state, topicInfo: {...infoData, replies: null}}
+      return {...state, replies: infoData.replies, topicInfo: {...infoData, replies: null}}
     case GET_TOPIC_LIST:
       return {...state, list, page: 1}
     case  APPEND_TOPIC_LIST:

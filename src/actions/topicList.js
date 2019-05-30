@@ -35,7 +35,7 @@ export const getTopicList = (params) => {
  */
 export function getTopicInfo (params) {
   return async dispatch => {
-    const result = await getJSON(api.getTopicInfo + params.id, params)
+    const result = await getJSON(`${api.getTopicInfo}/${params.topicId}`, params)
     if (result && result.success) {
       dispatch({type: GET_TOPIC_INFO, payload: {infoData: result.data}})
     } else {
