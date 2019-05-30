@@ -9,9 +9,20 @@ import { ADMIRE_SUCCESS, GET_TOPIC_INFO, GET_TOPIC_LIST, APPEND_TOPIC_LIST } fro
 export const getTopicList = (params) => {
   return async dispatch => {
     let result = await getJSON(api.getTopics, params)
-    if (result && result.data) {
-      if (result.data.success) {
-        dispatch({type: GET_TOPIC_LIST, payload: {list:result.data.data}})
+    if (result.success === true) {
+      if (params.page <= 1) {
+        dispatch({type: GET_TOPIC_LIST, payload: {list: result.data}})
+      } else {
+        //只有当有值的时候，才需要page++和拼接数据
+        if (result.data.length) {
+          dispatch({
+            type: APPEND_TOPIC_LIST,
+            payload: {
+              list: result.data,
+              page: params.page
+            }
+          })
+        }
       }
     }
   }

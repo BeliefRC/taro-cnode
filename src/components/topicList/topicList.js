@@ -3,7 +3,6 @@ import { connect } from '@tarojs/redux'
 import { View, ScrollView } from '@tarojs/components'
 import Topic from './topic'
 import { getTopicList } from '../../actions/topicList'
-import './topicList.scss'
 
 @connect(
   (store) => {
@@ -25,8 +24,13 @@ class TopicList extends Component {
     console.log(e.detail)
   }
 
+  onScrollToLower () {
+    let {page, limit, currentCategory, getTopicList} = this.props
+    getTopicList && getTopicList({page: page + 1, limit, tab: currentCategory.key})
+  }
+
   onScroll (e) {
-    console.log(e.detail)
+    // console.log(e.detail)
   }
 
   render () {
@@ -37,7 +41,6 @@ class TopicList extends Component {
     const scrollTop = 0
     const Threshold = 20
     return <ScrollView
-      className='scrollview'
       scrollY
       scrollWithAnimation
       scrollTop={scrollTop}
@@ -45,6 +48,7 @@ class TopicList extends Component {
       lowerThreshold={Threshold}
       upperThreshold={Threshold}
       onScrollToUpper={this.onScrollToUpper}
+      onScrollToLower={this.onScrollToLower}
       onScroll={this.onScroll}
     >
       {

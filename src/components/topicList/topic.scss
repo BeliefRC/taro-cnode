@@ -1,10 +1,11 @@
-.topiclist-topic{
+.topic-list-topic{
   font-size:16PX;
   display: flex;
   flex-direction: row;
   width: 100%;
   margin: 20PX 0;
   padding: 0  10PX;
+  border-bottom: 4px solid #c4c4c4;
   .head-img{
     width: 30PX;
     min-width: 30PX;

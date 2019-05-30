@@ -9,7 +9,7 @@ class  Topic  extends   Component{
    }
    render(){
        let {item}=this.props;
-      return (<View className='topiclist-topic' onClick={this.goToDetail.bind(this,item)}>
+      return (<View className='topic-list-topic' onClick={this.goToDetail.bind(this,item)}>
               <Image className='head-img' src={item.author?item.author.avatar_url:''} />
               <View className='right'>
               <View className='topic-title'>

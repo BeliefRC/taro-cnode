@@ -10,7 +10,13 @@ export function getJSON (url, data) {
   })
     .then(result => {
       Taro.hideLoading()
-      return result
+      return result.data
+    }).catch(e => {
+      console.error(e)
+      Taro.showLoading({title: '请求失败'})
+      setTimeout(() => {
+        Taro.hideLoading()
+      }, 2e3)
     })
 }
 
@@ -26,6 +32,12 @@ export function postJSON (url, data) {
   })
     .then(result => {
       Taro.hideLoading()
-      return result
+      return result.data
+    }).catch(e => {
+      console.error(e)
+      Taro.showLoading({title: '请求失败'})
+      setTimeout(() => {
+        Taro.hideLoading()
+      }, 2e4)
     })
 }
