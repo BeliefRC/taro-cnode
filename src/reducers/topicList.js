@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 }
 
 export default function topicList (state = INITIAL_STATE, action) {
-  const {list, page} = action.payload ||{}
+  const {list, page} = action.payload || {}
   switch (action.type) {
     case  ADMIRE_SUCCESS:
       return {...state, admireState: !state.admireState}

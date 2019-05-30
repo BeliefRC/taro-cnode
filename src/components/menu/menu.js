@@ -25,15 +25,15 @@ class Menu extends Component {
    *点击抽屉中的分类项
    * @param index 抽屉数据的索引
    */
-  clickCategory(index){
-    const {categoryData,changeCategory} = this.props
-    const currentCategory =categoryData[index]
+  clickCategory (index) {
+    const {categoryData, changeCategory} = this.props
+    const currentCategory = categoryData[index]
     changeCategory(currentCategory)
   }
 
   render () {
     const {categoryData, currentCategory, isShowDrawer, showDrawer, hideDrawer} = this.props
-    const drawerItems=this.getDrawerItems(categoryData)
+    const drawerItems = this.getDrawerItems(categoryData)
     return (<View>
         <View className='topic-list-menu'>
           <Image onClick={showDrawer} className='image' src={require('../../assets/img/cata.png')} />

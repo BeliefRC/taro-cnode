@@ -24,8 +24,8 @@ export const hideDrawer = () => {
  * @param currentCategory 当前分类的数据
  * @returns {Function}
  */
-export const changeCategory= (currentCategory) => {
+export const changeCategory = (currentCategory) => {
   return dispatch => {
-    dispatch({type: CHANGE_CATEGORY,payload:{currentCategory}})
+    dispatch({type: CHANGE_CATEGORY, payload: {currentCategory}})
   }
 }
