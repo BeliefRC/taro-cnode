@@ -1,7 +1,3 @@
-import {
-  ADD,
-  MINUS
-} from '../constants/counter'
 import { SHOW_DRAWER, HIDE_DRAWER, CHANGE_CATEGORY } from '../constants/menu'
 
 /**

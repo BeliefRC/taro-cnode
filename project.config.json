@@ -4,7 +4,7 @@
   "description": "使用taro搭建的多端cnode网站",
   "appid": "wx640e940c7aeda5fe",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": false,
     "postcss": false,
     "minified": false
