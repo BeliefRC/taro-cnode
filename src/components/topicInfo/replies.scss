@@ -1,0 +1,49 @@
+.topic-info-replies {
+  margin-top: 16PX;
+
+  .topic-info-reply {
+    font-size: 14PX;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 20PX 0;
+    padding: 0 10PX;
+
+    .topic-info-reply-image {
+      width: 30PX;
+      height: 30PX;
+      border-radius: 50%;
+    }
+
+    .topic-info-reply-right {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-grow: 1;
+      padding: 0 20PX;
+
+      .topic-info-reply-right-body {
+        display: flex;
+        flex-direction: column;
+
+        .topic-info-reply-right-pie {
+          margin-bottom: 5PX;
+        }
+      }
+
+      .topic-info-reply-right-zan {
+        display: flex;
+        flex-direction: row;
+
+        .topic-info-reply-right-zan-num {
+          line-height: 26PX;
+        }
+
+        .topic-info-reply-image-icon {
+          width: 26PX;
+          height: 26PX;
+        }
+      }
+    }
+  }
+}

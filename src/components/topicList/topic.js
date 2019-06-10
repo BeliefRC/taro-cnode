@@ -1,8 +1,15 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
+import myTimeToLocal from '../../utils/date'
+
 import './topic.scss'
 
 class Topic extends Component {
+
+  static  defaultProps = {
+    item: {}
+  }
+
   //跳转到详情页
   goToDetail (topic) {
     Taro.navigateTo({url: `/pages/detail/index?topicId=${topic.id}`})
@@ -27,7 +34,7 @@ class Topic extends Component {
         <View className='topic-info'>
           <Text>{item.author ? item.author.loginname : ''}</Text>
           <Text>{item.reply_count + '/' + item.visit_count}</Text>
-          <Text>创建时间{item.create_at}</Text>
+          <Text>创建时间{myTimeToLocal(item.create_at)}</Text>
         </View>
       </View>
     </View>)

@@ -1,16 +1,19 @@
 import Taro, { Component } from '@tarojs/taro'
 import { connect } from '@tarojs/redux'
 import { View, Button, Text } from '@tarojs/components'
-import { getTopicInfo } from '../../actions/topicList'
+import TopicInfo from '../../components/topicInfo/topicInfo'
+import Replies from '../../components/topicInfo/replies'
+import { getTopicInfo, admireTopic } from '../../actions/topicList'
 import './index.scss'
 
 @connect(store => {
     return {
       topicInfo: store.topicList.topicInfo,
       replies: store.topicList.replies,
+      user: store.user,
     }
   },
-  {getTopicInfo}
+  {getTopicInfo, admireTopic}
 )
 export default class Detail extends Component {
 
@@ -22,17 +25,32 @@ export default class Detail extends Component {
     this.getDetail()
   }
 
+  onAdmire (reply) {
+    const {user} = this.props
+    const params = {replyId: reply.id, accesstoken: user.accesstoken}
+    admireTopic(params).then(result => {
+      if (result.success) {
+        this.getDetail()
+      }
+    })
+  }
+
+  /**
+   * 获取话题详情数据
+   */
   getDetail () {
-    const {getTopicInfo} = this.props
-    const topicId = this.$router.params.topicId
-    getTopicInfo({topicId})
+    const {getTopicInfo, user} = this.props
+    const {accesstoken} = user
+    const {topicId} = this.$router.params
+    getTopicInfo({topicId, accesstoken})
   }
 
   render () {
-    const {topicInfo} = this.props
+    const {topicInfo, replies, user} = this.props
     return (
       <View className=''>
-        {topicInfo.title}
+        <TopicInfo topicInfo={topicInfo} />
+        <Replies replies={replies} user={user} onAdmire={this.onAdmire.bind(this)} />
       </View>
     )
   }

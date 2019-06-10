@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro'
 import { getJSON, postJSON } from '../utils/request'
 import api from '../constants/api'
 import { ADMIRE_SUCCESS, GET_TOPIC_INFO, GET_TOPIC_LIST, APPEND_TOPIC_LIST } from '../constants/topicList'
@@ -42,4 +43,21 @@ export function getTopicInfo (params) {
       console.error('请求话题详情失败！')
     }
   }
+}
+
+/**
+ * 点赞话题回复
+ * @param params
+ * @returns {Promise<boolean|*>}
+ */
+export async function admireTopic (params) {
+  const result = await postJSON(api.upReply + params.replyId + '/ups', params)
+  if (result && result.success) {
+    //成功点赞
+    return result
+  } else {
+    //点赞失败
+    Taro.showToast({title: '点赞失败!', icon: 'none'})
+  }
+  return false
 }
