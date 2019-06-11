@@ -18,7 +18,7 @@
     margin-left: 10PX;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex: 1;
 
     .topic-title, .topic-info {
       display: flex;
