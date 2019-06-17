@@ -34,7 +34,7 @@ class Replies extends Component {
   render () {
     const {replies} = this.props
     return (<View className='topic-info-replies'>
-      <Text>{replies.length}条回复</Text>
+      {replies.length ? <Text>{replies.length}条回复</Text> : null}
       {replies.map((item, index) =>
         <View key={item.id} className='topic-info-reply'>
           <Image className='topic-info-reply-image' src={item.author ? item.author.avatar_url : ''} />
