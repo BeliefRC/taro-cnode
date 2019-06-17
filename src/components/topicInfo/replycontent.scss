@@ -1,4 +1,4 @@
-.replycontent {
+.reply-content {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -7,12 +7,12 @@
   z-index: 2;
   background-color: #ffffff;
 
-  .replycontent-text {
+  .reply-content-text {
     width: 100%;
     height: 200PX;
   }
 
-  .replycontent-btngroup {
+  .reply-content-btn-group {
     display: flex;
     flex-direction: row;
 
@@ -21,7 +21,7 @@
     }
 
     .btn:nth-child(1) {
-      background-color: #ff4081;
+      background-color: #4fcdff;
       color: #FFFFFF;
     }
   }
