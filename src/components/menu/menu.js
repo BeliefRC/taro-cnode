@@ -33,6 +33,10 @@ class Menu extends Component {
     }
   }
 
+  toUser () {
+    Taro.navigateTo({url: '/pages/login/login'})
+  }
+
   render () {
     const {categoryData, currentCategory, isShowDrawer, showDrawer, hideDrawer} = this.props
     const drawerItems = this.getDrawerItems(categoryData)
@@ -40,7 +44,7 @@ class Menu extends Component {
         <View className='topic-list-menu'>
           <Image onClick={showDrawer} className='image' src={require('../../assets/img/cata.png')} />
           <Text>{currentCategory ? currentCategory.value : null}</Text>
-          <Image className='image' src={require('../../assets/img/login.png')} />
+          <Image className='image' src={require('../../assets/img/login.png')} onClick={this.toUser.bind(this)} />
         </View>
         <AtDrawer
           style='position:absolute;'

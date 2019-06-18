@@ -6,15 +6,15 @@ import { getJSON, postJSON } from '../utils/request'
 //验证accesstoken
 export function accessUserToken (params) {
   return async dispatch => {
-    let result = await postJSON(api.checkusertoken, params)
-    if (result && result.data && result.data.success) {
+    const result = await postJSON(api.checkUserToken, params)
+    if (result && result.success) {
       dispatch({
         type: LOGIN_SUCCESS,
         accesstoken: params.accesstoken,
-        loginname: result.data.loginname,
-        avatar_url: result.data.avatar_url
+        loginname: result.loginname,
+        avatar_url: result.avatar_url
       })
-      return result.data
+      return result
     } else {
       dispatch({type: LOGIN_FAIL, accesstoken: null, loginname: null})
     }
@@ -24,11 +24,11 @@ export function accessUserToken (params) {
 
 //获取用户信息
 export async function getUserInfo (params) {
-  let result = await getJSON(api.getuserinfo + params.loginname)
-  if (result && result.data && result.data.success) {
-    return result.data
+  const result = await getJSON(api.getUserInfo + params.loginname)
+  if (result && result.success) {
+    return result
   } else {
-    Taro.showToast({title: '拉取用户信息失败'})
+    Taro.showToast({title: '拉取用户信息失败', icon: 'none'})
   }
 }
 

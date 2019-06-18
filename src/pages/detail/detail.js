@@ -5,7 +5,7 @@ import TopicInfo from '../../components/topicInfo/topicInfo'
 import Replies from '../../components/topicInfo/replies'
 import ReplyContent from '../../components/topicInfo/replycontent'
 import { getTopicInfo, admireTopic, replyContentValue } from '../../actions/topicList'
-import './index.scss'
+import './detail.scss'
 
 @connect(store => {
     return {
