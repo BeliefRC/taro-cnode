@@ -18,16 +18,16 @@ class User extends Component {
   componentWillMount () {
     getUserInfo({loginname: this.props.loginname})
       .then(result => {
-      this.setState({
-        recent_topics: result.data.recent_topics,
-        recent_replies: result.data.recent_replies
+        this.setState({
+          recent_topics: result.data.recent_topics,
+          recent_replies: result.data.recent_replies
+        })
       })
-    })
   }
 
   //发布话题 跳转到发布话题页面
   publishTopic () {
-    // Taro.redirectTo({url: '/pages/publish/publish'})
+    Taro.redirectTo({url: '/pages/publish/publish'})
   }
 
   render () {

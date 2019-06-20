@@ -12,7 +12,7 @@ class Topic extends Component {
 
   //跳转到详情页
   goToDetail (topic) {
-    Taro.navigateTo({url: `/pages/detail/index?topicId=${topic.id}`})
+    Taro.navigateTo({url: `/pages/detail/detail?topicId=${topic.id}`})
   }
 
   render () {

@@ -78,3 +78,25 @@ export async function replyContentValue (params) {
   }
   return false
 }
+
+//发布话题
+export async function submitTopic (params) {
+  const result = await postJSON(api.createTopic, params)
+  if (result && result.success) {
+    return result
+  } else {
+    Taro.showToast({title: '发布话题失败!', icon: 'none'})
+  }
+  return false
+}
+
+//更新话题
+export async function updateTopic (params) {
+  const result = await postJSON(api.updateTopic, params)
+  if (result && result.success) {
+    return result
+  } else {
+    Taro.showToast({title: '更新话题失败!', icon: 'none'})
+  }
+  return false
+}
