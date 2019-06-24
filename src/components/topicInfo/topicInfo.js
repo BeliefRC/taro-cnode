@@ -8,6 +8,16 @@ class TopicInfo extends Component {
     topicInfo: {}
   }
 
+  // 删除话题
+  delTopic (topicInfo) {
+    this.props.onDelTopic && this.props.onDelTopic(topicInfo)
+  }
+
+  //编辑话题
+  editTopic () {
+    Taro.redirectTo({url: '/pages/publish/publish?edit=1'})
+  }
+
   render () {
     const {topicInfo, selfPublish} = this.props
     return <View className='topic-info'>
@@ -25,10 +35,14 @@ class TopicInfo extends Component {
         </View>
         {
           selfPublish ? <View className='topic-info-header-img'>
-            <Image onClick={this.delTopic.bind(this, topicInfo)} className='img'
+            <Image
+              onClick={this.delTopic.bind(this, topicInfo)}
+              className='img'
               src={require('../../assets/img/del.png')}
             />
-            <Image onClick={this.editTopic.bind(this, topicInfo)} className='img'
+            <Image
+              onClick={this.editTopic.bind(this, topicInfo)}
+              className='img'
               src={require('../../assets/img/edit.png')}
             />
           </View> : null

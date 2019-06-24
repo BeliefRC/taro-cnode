@@ -8,22 +8,31 @@ import './publish.scss'
   return {...store.menu, ...store.user, topicInfo: store.topicList.topicInfo}
 })
 class Publish extends Component {
-  componentWillMount () {
-    let {edit} = this.$router.params
-    let {topicInfo} = this.props
-    this.setState({
-      isEdit: edit === '1',
-      topicInfo: topicInfo,
-      title: topicInfo ? topicInfo.title : '',
-      content: topicInfo ? topicInfo.content : ''
-    })
-  }
-
   state = {
     selectCategory: null,
     title: null,
     content: null,
     isEdit: false
+  }
+
+  componentDidMount () {
+    let {edit} = this.$router.params
+    let {topicInfo,categoryData} = this.props
+    const content=topicInfo ? this.filterHTMLTag(topicInfo.content) : ''
+    this.setState({
+      isEdit: edit === '1',
+      topicInfo: topicInfo,
+      title: topicInfo ? topicInfo.title : '',
+      selectCategory:topicInfo?categoryData.find(item=>item.key===topicInfo.tab):null,
+      content
+    })
+  }
+
+  filterHTMLTag (msg='') {
+    msg = msg.replace(/<\/?[^>]*>/g, '') //去除HTML Tag
+    // msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+    // msg = msg.replace(/&nbsp;/ig, '') //去掉nbsp
+    return msg
   }
 
   /**
@@ -51,7 +60,7 @@ class Publish extends Component {
     let {title, content, selectCategory, isEdit} = this.state
     let {accesstoken, topicInfo} = this.props
     if (title && content && selectCategory) {
-      let params = {tab: 'dev', title, content, accesstoken, topic_id: topicInfo.id}
+      let params = {tab: selectCategory.key, title, content, accesstoken, topic_id: topicInfo.id}
       // 判断是新增还是编辑，做不同的数据操作
       if (isEdit) {
         updateTopic(params).then(result => {
@@ -72,8 +81,8 @@ class Publish extends Component {
   }
 
   render () {
-    let {categoryData} = this.props
-    let {selectCategory, topicInfo, isEdit} = this.state
+    const {categoryData} = this.props
+    const {selectCategory, topicInfo, isEdit} = this.state
     return (<View className='publish-topic'>
       <Input
         type='text'
@@ -83,7 +92,7 @@ class Publish extends Component {
         placeholder='请输入你要发布的标题'
       />
       <Textarea
-        value={isEdit ? (topicInfo ? topicInfo.content : '') : ''}
+        value={isEdit ? (topicInfo ? this.filterHTMLTag(topicInfo.content) : '') : ''}
         className='publish-topic-content'
         onInput={this.contentChange.bind(this)}
         placeholder='请输入您要发布的内容'

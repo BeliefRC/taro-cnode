@@ -107,9 +107,10 @@ export default class Detail extends Component {
   render () {
     const {showReplyContent} = this.state
     const {topicInfo, replies, user} = this.props
+    const selfPublish = topicInfo.author && user.loginname === topicInfo.author.loginname
     return (
       <View className='detail'>
-        <TopicInfo topicInfo={topicInfo} />
+        <TopicInfo topicInfo={topicInfo} selfPublish={selfPublish} />
         <Button className='reply-btn' onClick={this.reply.bind(this)}>回复</Button>
         <Replies
           replies={replies}
