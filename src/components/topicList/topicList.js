@@ -20,16 +20,15 @@ class TopicList extends Component {
     getTopicList && getTopicList({page, limit, tab: currentCategory.key})
   }
 
-  onScrollToUpper (e) {
-    console.log(e.detail)
+  onScrollToUpper () {
   }
 
   onScrollToLower () {
-    let {page, limit, currentCategory, getTopicList} = this.props
+    const {page, limit, currentCategory, getTopicList} = this.props
     getTopicList && getTopicList({page: page + 1, limit, tab: currentCategory.key})
   }
 
-  onScroll (e) {
+  onScroll () {
     // console.log(e.detail)
   }
 
@@ -47,8 +46,8 @@ class TopicList extends Component {
       style={scrollStyle}
       lowerThreshold={Threshold}
       upperThreshold={Threshold}
-      onScrollToUpper={this.onScrollToUpper}
-      onScrollToLower={this.onScrollToLower}
+      onScrollToUpper={this.onScrollToUpper.bind(this)}
+      onScrollToLower={this.onScrollToLower.bind(this)}
       onScroll={this.onScroll}
     >
       {

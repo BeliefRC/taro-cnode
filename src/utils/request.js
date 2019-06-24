@@ -2,7 +2,7 @@ import Taro from '@tarojs/taro'
 import '@tarojs/async-await'
 
 export function getJSON (url, data) {
-  Taro.showLoading()
+  Taro.showLoading({title: '请求中', mask: true})
   return Taro.request({
     url: url,
     data: data,
@@ -21,7 +21,7 @@ export function getJSON (url, data) {
 }
 
 export function postJSON (url, data) {
-  Taro.showLoading()
+  Taro.showLoading({title: '请求中', mask: true})
   return Taro.request({
     header: {
       'content-type': 'application/json'
