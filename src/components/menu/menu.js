@@ -3,11 +3,12 @@ import { connect } from '@tarojs/redux'
 import { View, Text, Image } from '@tarojs/components'
 import { AtDrawer } from 'taro-ui'
 import { showDrawer, hideDrawer, changeCategory } from '../../actions/menu'
+import { validateUser } from '../../actions/user'
 import './menu.scss'
 
 @connect(
   (store) => {
-    return {...store.menu}
+    return {...store.menu, user: store.user}
   },
   {showDrawer, hideDrawer, changeCategory}
 )
@@ -34,7 +35,14 @@ class Menu extends Component {
   }
 
   toUser () {
-    Taro.navigateTo({url: '/pages/login/login'})
+    const {user} = this.props
+    validateUser(user)
+      .then(result => {
+        if (result) {
+          //成功跳转到用户详情
+          Taro.navigateTo({url: '/pages/user/user'})
+        }
+      })
   }
 
   render () {

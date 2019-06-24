@@ -26,8 +26,13 @@ class Publish extends Component {
     isEdit: false
   }
 
+  /**
+   *  选择话题分类
+   * @param event
+   */
   changeCategory (event) {
     let {categoryData} = this.props
+    // value值为数组索引
     this.setState({selectCategory: categoryData[event.detail.value]})
   }
 
@@ -47,6 +52,7 @@ class Publish extends Component {
     let {accesstoken, topicInfo} = this.props
     if (title && content && selectCategory) {
       let params = {tab: 'dev', title, content, accesstoken, topic_id: topicInfo.id}
+      // 判断是新增还是编辑，做不同的数据操作
       if (isEdit) {
         updateTopic(params).then(result => {
           if (result) {
