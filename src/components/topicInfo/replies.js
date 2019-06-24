@@ -1,9 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, RichText, Image } from '@tarojs/components'
+import { validateUser } from '../../actions/user'
 import myTimeToLocal from '../../utils/date'
 import './replies.scss'
-
-import { validateUser } from '../../actions/user'
 
 class Replies extends Component {
   static defaultProps = {
@@ -24,11 +23,16 @@ class Replies extends Component {
   }
 
   /**
-   *
-   * @param item
+   * 回复评论
+   * @param replyItem
    */
-  replyToReply (item) {
-    this.props.onReplyToReply && this.props.onReplyToReply(item)
+  replyToReply (replyItem) {
+    const {user}=this.props;
+    validateUser(user).then(result=>{
+      if(result){
+        this.props.onReplyToReply&&this.props.onReplyToReply(replyItem)
+      }
+    })
   }
 
   render () {

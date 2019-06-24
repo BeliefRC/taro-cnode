@@ -5,6 +5,8 @@ import TopicInfo from '../../components/topicInfo/topicInfo'
 import Replies from '../../components/topicInfo/replies'
 import ReplyContent from '../../components/topicInfo/replycontent'
 import { getTopicInfo, admireTopic, replyContentValue } from '../../actions/topicList'
+import { validateUser } from '../../actions/user'
+
 import './detail.scss'
 
 @connect(store => {
@@ -64,7 +66,11 @@ export default class Detail extends Component {
    * 评论或回复
    */
   reply () {
-    this.setState({showReplyContent: true})
+    validateUser(this.props.user).then(result => {
+      if (result) {
+        this.setState({showReplyContent: true})
+      }
+    })
   }
 
   /**
